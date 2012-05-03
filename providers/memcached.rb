@@ -44,6 +44,7 @@ action :before_deploy do
       :hosts => results.sort_by { |r| r.name },
       :options => new_resource.options
     )
+    notifies :restart, new_resource.application
   end
 
 end

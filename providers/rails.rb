@@ -134,6 +134,7 @@ def install_gems
       action :install
       source src if src
       version ver if ver && ver.length > 0
+      notifies :restart, new_resource.application
     end
   end
 end
@@ -152,5 +153,6 @@ def create_database_yml
       :database => new_resource.database,
       :rails_env => new_resource.environment_name
     )
+    notifies :restart, new_resource.application
   end
 end
